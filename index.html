@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Neighborhood restaurant!</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+   
+</head>
+<body>
+<div class="container">
+    <!--Map-->
+    <div id="map" class="map-canvas"></div>
+    <!--Input for search and seeing search results-->
+    <div class="options-box">
+        <aside>
+			<!--Search Box-->
+			<header>
+				<h1>Restaurants</h1>
+				<input type="text" class="form-control" data-bind="value: query, valueUpdate: 'keyup'" id="query-input" placeholder="Search restaurant"
+						   autofocus>
+				<!--Number of results from the search filter-->
+				<p id="query-summary" data-bind="text: queryResult"></p>
+			</header>
+			<div class="collapse-list" data-bind="click: toggleList">
+				<img class="collapse-img" data-bind="attr:{src: rollupIconPath}" />
+			</div>
+			<!--List of search Results-->
+			<ul class="list-group" data-bind="visible: listVisible, foreach: {data: FilteredrestaurantList, as: 'restaurant'}" id="list">
+				<li data-bind="click: $root.selectrestaurant" class="list-group-item">
+					<span data-bind="text: restaurant.name"></span>
+				</li>
+			</ul>
+        </aside>
+	</div>
+</div>
+    <!--Loading Scripts-->
+<script src="lib/jquery.min.js"></script>
+<script src="lib/knockout-3.4.2.js"></script>
+<script src="js/map.js"></script>
+<script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyADl-jJYrfLBfn53NG7wBxhImhXko28bl0&v=3&callback=initMap" onerror="googleErrorHandler()"></script>
+</body>
+</html>
